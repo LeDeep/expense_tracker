@@ -1,12 +1,12 @@
 require './lib/money'
 
 class Purchase < ActiveRecord::Base
-  belongs_to :category
+  has_many :categories, :through => :groups
+  has_many :groups
 
   validates :item, :presence => true
   validates :cost, :presence => true
   validates :date, :presence => true
-  validates :category_id, :presence => true
 
   scope :beginning_date, lambda {|date| where('date >= ?', date )}
   scope :ending_date, lambda {|date| where('date <= ?', date )}

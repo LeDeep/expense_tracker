@@ -6,6 +6,7 @@ require 'purchase'
 require 'category'
 require 'shoulda-matchers'
 require 'money'
+require 'group'
 
 
 ActiveRecord::Base.establish_connection(YAML::load(File.open('./db/config.yml'))["test"])

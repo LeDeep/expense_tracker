@@ -1,6 +1,8 @@
 require 'active_record'
 require './lib/category'
 require './lib/purchase'
+require './lib/group'
+
 
 
 
@@ -43,14 +45,16 @@ def add_purchase
   puts "Please select the number associated with the category of your purchase:\n\n"
   Category.all.each_with_index {|category, i| puts (i + 1).to_s + ". " + category.tags}
   category = gets.chomp
-  if Purchase.create("item" => item, "cost" => cost, "date" => date, "category_id" => category )
+  if purchase = Purchase.create("item" => item, "cost" => cost, "date" => date)
     puts "#{item} has been added to your contacts.\n\n"
+    add_group(group_purchase_id(purchase.id), group_category_id(category))
   else
     puts "Invalid item. Here's what's wrong:"
     contact.errors.full_messages.each {|message| puts "   #{message}."}
     puts "\nPlease enter again.\n\n"
     add_name
   end
+
 end
 
 def run_category_report
@@ -63,6 +67,25 @@ def run_category_report
   print Money.new(Purchase.sum(:cost, :conditions => {:category_id => choice}))
   print "\n\n"
 end
+
+def group_category_id(id)
+  # Category.all.each_with_index {|category, i| puts (i + 1).to_s + ". " + category.tags}
+  # choice = gets.chomp
+  category = Category.find(id)
+  category.id
+end
+
+def group_purchase_id(id)
+  # Purchase.all.each_with_index {|purchase, i| puts (i + 1).to_s + ". " + purchase.items}
+  # choice = gets.chomp
+  purchase = Purchase.find(id)
+  purchase.id
+end
+
+def add_group(purchase_id, category_id)
+  Group.create(:purchase_id => purchase_id, :category_id => category_id)
+end
+
 
 def run_period_report
   puts "Enter the beginning date for the period you want to view? Example: (06/11/2012)"

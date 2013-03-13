@@ -6,6 +6,6 @@ require './lib/purchase'
 end
 
 (1..6).each do |number|
-  Purchase.create(:item => "item#{number}", :cost => ("#{number}#{number}.#{number}#{number}").to_f , :date => "#{number}/08/1985", :category_id => number)
+  Purchase.create(:item => "item#{number}", :cost => ("#{number}#{number}.#{number}#{number}").to_f , :date => "#{number}/08/1985")
 end
 

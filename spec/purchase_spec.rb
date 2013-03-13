@@ -9,12 +9,12 @@ describe Purchase do
     it {should allow_value(10.25).for :cost}
     it {should allow_value(10).for :cost}
     it {should validate_presence_of :date}
-    it {should validate_presence_of :category_id}
     
   end
 
   context 'associations' do 
-    it {should belong_to :category}
+    it {should have_many :categories}
+    it {should have_many :groups}
 
   end
 

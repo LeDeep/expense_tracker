@@ -10,6 +10,7 @@ describe Category do
 
 context 'associations' do 
     it {should have_many :purchases}
+    it {should have_many :groups}
 
   end
 

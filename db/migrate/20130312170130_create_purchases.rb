@@ -4,7 +4,6 @@ class CreatePurchases < ActiveRecord::Migration
       t.column :item, :string
       t.column :cost, :decimal, :precision => 15, :scale => 2
       t.column :date, :date
-      t.column :category_id, :integer
 
       t.timestamps
     end
