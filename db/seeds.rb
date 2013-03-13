@@ -8,3 +8,4 @@ end
 (1..5).each do |number|
   Purchase.create(:item => "item#{number}", :cost => number, :date => "#{number}/08/1985", :category_id => number)
 end
+

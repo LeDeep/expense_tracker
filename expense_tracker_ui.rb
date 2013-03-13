@@ -37,7 +37,7 @@ def add_purchase
   puts "Please enter the cost of the purchase:"
   cost = gets.chomp
   puts "Please enter the date of the purchase: Example (03/12/2013)"
-  date = gets.chomp
+  date = Date.parse(gets.chomp)
   puts "Please select the number associated with the category of your purchase:"
   Category.all.each_with_index {|category, i| puts (i + 1).to_s + ". " + category.tags}
   category = gets.chomp
@@ -47,10 +47,20 @@ end
 def run_report
   puts "Please select the category number that whos report you would like to run:"
   Category.all.each_with_index {|category, i| puts (i + 1).to_s + ". " + category.tags}
-  choice = (gets.chomp.to_i)
-  tag = Category.where(:id => choice).first
-  display_purchases
+  tag = Category.find(gets.chomp)
+  display_purchase(tag.purchases)
 end
+
+def display_purchase(purchases)
+  puts "Here are your purchases for the requested category:\n" 
+  purchases.each do |purchase|
+
+  puts "Item: #{purchase.item}"
+  p purchase.cost
+  puts "Date: #{purchase.date}" + "\n\n"
+  end
+
+end   
 
 
 welcome
