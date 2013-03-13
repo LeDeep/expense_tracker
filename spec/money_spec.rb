@@ -9,15 +9,6 @@ describe Money do
     end
   end
 
-  context 'to_i' do 
-    it 'converts all cost inputs into cents' do 
-     cost = 7.5
-     money = Money.new(cost)
-     money.to_i.should eq 750
-    end
-
-  end
-
   context 'readers' do 
     it 'shows the instance variable price' do 
       cost = 7.5

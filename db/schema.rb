@@ -21,11 +21,11 @@ ActiveRecord::Schema.define(:version => 20130312170740) do
 
   create_table "purchases", :force => true do |t|
     t.string   "item"
-    t.integer  "cost"
-    t.string   "date"
+    t.decimal  "cost",        :precision => 15, :scale => 2
+    t.date     "date"
     t.integer  "category_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
   end
 
 end

@@ -2,8 +2,8 @@ class CreatePurchases < ActiveRecord::Migration
   def change 
     create_table :purchases do |t|
       t.column :item, :string
-      t.column :cost, :integer
-      t.column :date, :string
+      t.column :cost, :decimal, :precision => 15, :scale => 2
+      t.column :date, :date
       t.column :category_id, :integer
 
       t.timestamps
